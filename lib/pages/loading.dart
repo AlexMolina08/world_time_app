@@ -12,7 +12,7 @@ class _LoadingState extends State<Loading> {
 
 
   void setUpWorldTime() async {
-    WorldTime worldTime = WorldTime(bandera:"spain.png" ,ubicacion: 'Granada  ' ,url:'Europe/Madrid');
+    WorldTime worldTime = WorldTime(bandera:"spain.png" ,ubicacion: 'Granada' ,url:'Australia/Sydney');
     await worldTime.getTime();
     //Reemplazamos una ruta por otra (De / a /home)
     Navigator.pushReplacementNamed(context , '/home' , arguments: {

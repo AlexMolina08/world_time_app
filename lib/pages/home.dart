@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
             decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/$background'),
-                  fit: BoxFit.cover //Esto es para que rellene todo el container con la foto
+                  fit: BoxFit.cover //Esto es para que rellene el container con la foto
               )
             ),
             child: Padding(
@@ -45,8 +45,17 @@ class _HomeState extends State<Home> {
                 onPressed: (){
                   Navigator.pushNamed(context,'/location');
                 },
-                icon: Icon(Icons.edit_location),
-                label: Text("Elige ubicacion")
+                icon: Icon(
+                  Icons.edit_location,
+                  color: Colors.deepOrangeAccent
+                ),
+                label: Text(
+                    "Elige un lugar",
+                    style: TextStyle(
+                      color:Colors.grey[100],
+                      fontSize: 20.0,
+                    ),
+                )
               ),
 
               SizedBox(height: 20.0),
@@ -58,7 +67,8 @@ class _HomeState extends State<Home> {
                     datos['ubicacion'],
                     style: TextStyle(
                       fontSize: 30.0,
-                      letterSpacing: 2.0
+                      letterSpacing: 2.0,
+                      color: Colors.white
                     )
                   )
                 ],
@@ -70,7 +80,7 @@ class _HomeState extends State<Home> {
                 datos['time'],
                 style: TextStyle(
                   fontSize: 67.0,
-
+                  color:Colors.grey[200]
                 ),
               )
 
