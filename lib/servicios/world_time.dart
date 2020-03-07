@@ -1,5 +1,6 @@
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 
 /*
@@ -39,7 +40,7 @@ class WorldTime{
       actual = actual.add(Duration(hours: int.parse(offset)));
 
       //Establecer la hora actual
-      time = actual.toString();
+      time = DateFormat.jm().format(actual);
     }
     catch(e){
       print('ERROR: $e');
