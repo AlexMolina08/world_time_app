@@ -20,52 +20,66 @@ class _HomeState extends State<Home> {
 
     print(datos);
 
+
+    //Establecemos el fondo
+    String background = datos['haySol'] ? 'morning.png' : 'night.jpg';
+    Color bgColor = datos['haySol'] ? Colors.cyan : Colors.indigo[800];
+
     return Scaffold(
+      backgroundColor: bgColor,
       body: SafeArea(
-          child:Padding(
-          padding: const EdgeInsets.fromLTRB(0,120,0.0,0.0),
-
-          child: Column(
-
-            children: <Widget>[
-            FlatButton.icon(
-              onPressed: (){
-                Navigator.pushNamed(context,'/location');
-              },
-              icon: Icon(Icons.edit_location),
-              label: Text("Elige ubicacion")
+          child:Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/$background'),
+                  fit: BoxFit.cover //Esto es para que rellene todo el container con la foto
+              )
             ),
+            child: Padding(
+            padding: const EdgeInsets.fromLTRB(0,120,0.0,0.0),
+            
+            child: Column(
 
-            SizedBox(height: 20.0),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  datos['ubicacion'],
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    letterSpacing: 2.0
-                  )
-                )
-              ],
-            ),
-
-            SizedBox(height: 20.0),
-
-            Text(
-              datos['time'],
-              style: TextStyle(
-                fontSize: 67.0,
-
+              FlatButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context,'/location');
+                },
+                icon: Icon(Icons.edit_location),
+                label: Text("Elige ubicacion")
               ),
-            )
+
+              SizedBox(height: 20.0),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    datos['ubicacion'],
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      letterSpacing: 2.0
+                    )
+                  )
+                ],
+              ),
+
+              SizedBox(height: 20.0),
+
+              Text(
+                datos['time'],
+                style: TextStyle(
+                  fontSize: 67.0,
+
+                ),
+              )
 
 
 
-          ],
+            ],
         ),
-      )
+      ),
+          )
       )
 
 

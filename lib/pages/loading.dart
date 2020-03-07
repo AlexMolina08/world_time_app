@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worldtimeapp/servicios/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 class Loading extends StatefulWidget {
@@ -11,13 +12,14 @@ class _LoadingState extends State<Loading> {
 
 
   void setUpWorldTime() async {
-    WorldTime worldTime = WorldTime(bandera:"spain.png" ,ubicacion: 'Granada' ,url:'Europe/Madrid');
+    WorldTime worldTime = WorldTime(bandera:"spain.png" ,ubicacion: 'Granada  ' ,url:'Europe/Madrid');
     await worldTime.getTime();
     //Reemplazamos una ruta por otra (De / a /home)
     Navigator.pushReplacementNamed(context , '/home' , arguments: {
       'ubicacion' : worldTime.ubicacion,
       'time' : worldTime.time,
-      'bandera': worldTime.bandera
+      'bandera': worldTime.bandera,
+      'haySol' : worldTime.haySol
     });
   }
 
@@ -30,9 +32,13 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Padding(
-        padding: EdgeInsets.all(50.0),
-        child:Text('CARGANDO...')
+      backgroundColor: Colors.grey[600],
+      body: Center(
+        child:SpinKitPouringHourglass(
+          color:Colors.lightGreenAccent,
+          size:80.0,
+          duration: Duration(milliseconds: 1100),
+        )
       )
     );
   }

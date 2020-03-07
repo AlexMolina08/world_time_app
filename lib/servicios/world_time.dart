@@ -12,6 +12,7 @@ class WorldTime{
   String time; // Ubicacion actual en esa ubicacion
   String bandera; // url de un icono de una bandera
   String url; // final de la url de la api (ej: Europe/Madrid)
+  bool haySol; //true = de dia  , false = de noche
 
 
 
@@ -38,6 +39,9 @@ class WorldTime{
       //Convertimos esas propiedades a datos manejables
       DateTime actual = DateTime.parse(fechaHora);
       actual = actual.add(Duration(hours: int.parse(offset)));
+
+      //Inicializamos la variable haySol , dependiendo de la hora dada por actual
+      haySol = (actual.hour > 6 && actual.hour < 20) ? true : false;
 
       //Establecer la hora actual
       time = DateFormat.jm().format(actual);
