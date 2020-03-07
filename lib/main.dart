@@ -11,7 +11,7 @@ import 'package:worldtimeapp/pages/choose_location.dart';
  * */
 
 void main() => runApp(MaterialApp(
-    initialRoute: '/home',
+    initialRoute: '/',
     /* El argumento routes recibe un map con la clave las rutas y
     *  valor una función abstracta , que tiene como parametro context , que
     *  es la ubicación actual dentro del arbol de ventanas
