@@ -22,21 +22,29 @@ class WorldTime{
   * */
   Future<void> getTime() async {
 
-    //Usamos await para que no siga ejecutando el resto de sentencias hasta que no haya obtenido
-    //los datos
-    Response response = await get('http://worldtimeapi.org/api/timezone/$url'); //obtenemos el json
-    Map datos = jsonDecode(response.body); //lo decodificamos en un map
 
-    //obtener propiedades de datos
-    String fechaHora = datos['datetime'];
-    String offset = datos['utc_offset'].substring(1,3);
+    try {
+      //Usamos await para que no siga ejecutando el resto de sentencias hasta que no haya obtenido
+      //los datos
+      Response response = await get(
+          'http://worldtimeapi.org/api/timezone/$url'); //obtenemos el json
+      Map datos = jsonDecode(response.body); //lo decodificamos en un map
 
-    //Convertimos esas propiedades a datos manejables
-    DateTime actual = DateTime.parse(fechaHora);
-    actual = actual.add(Duration(hours:int.parse(offset)));
+      //obtener propiedades de datos
+      String fechaHora = datos['datetime'];
+      String offset = datos['utc_offset'].substring(1, 3);
 
-    //Establecer la hora actual
-    time  = actual.toString();
+      //Convertimos esas propiedades a datos manejables
+      DateTime actual = DateTime.parse(fechaHora);
+      actual = actual.add(Duration(hours: int.parse(offset)));
+
+      //Establecer la hora actual
+      time = actual.toString();
+    }
+    catch(e){
+      print('ERROR: $e');
+      time = "Error: No se ha podido acceder al dato time :(";
+    }
 
   }
 }
