@@ -18,6 +18,23 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTime(bandera:"usa.png" ,ubicacion: 'Nueva York' ,url:'America/New_York'),
   ];
 
+
+  void actualizaTime(index) async{
+    WorldTime worldTime = lugares[index];
+    await worldTime.getTime(); //Esperamos aqui hasta que se consiga
+
+
+    //Ir a la pantalla de inicio
+    //Usamos pop de Navigator , que saca de la pila la ventana actual y le
+    //pasa datos a traves de un map a la anterior
+    Navigator.pop(context , {
+      'ubicacion' : worldTime.ubicacion,
+      'time' : worldTime.time,
+      'bandera': worldTime.bandera,
+      'haySol' : worldTime.haySol
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +55,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
             child: Card(
               child: ListTile(
                 onTap: () {
-                  print(lugares[index].ubicacion);
+                  actualizaTime(index);
                 },
                 title: Text(lugares[index].ubicacion),
                 leading: CircleAvatar(backgroundImage: AssetImage('assets/${lugares[index].bandera}')

@@ -41,7 +41,7 @@ class WorldTime{
       actual = actual.add(Duration(hours: int.parse(offset)));
 
       //Inicializamos la variable haySol , dependiendo de la hora dada por actual
-      haySol = (actual.hour > 6 && actual.hour < 20) ? true : false;
+      haySol = (actual.hour > 5 && actual.hour < 20) ? true : false;
 
       //Establecer la hora actual
       time = DateFormat.jm().format(actual);
