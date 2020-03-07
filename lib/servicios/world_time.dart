@@ -1,22 +1,30 @@
 import 'package:http/http.dart';
 import 'dart:convert';
 
+
+/*
+  Esta clase es una representacion de un lugar , su fecha y su hora
+*/
 class WorldTime{
 
   String ubicacion; // Ubicacion
-  String hora; // Ubicacion actual en esa ubicacion
+  String time; // Ubicacion actual en esa ubicacion
   String bandera; // url de un icono de una bandera
   String url; // final de la url de la api (ej: Europe/Madrid)
+
+
+
+  WorldTime({this.ubicacion,this.bandera,this.url});
 
 
   /*
   * Obtiene el tiempo desde worltimeap en formato json y lo convierte a map.
   * */
-  void getTime() async {
+  Future<void> getTime() async {
 
-    /*Usamos await para que no siga ejecutando el resto de sentencias hasta que no haya obtenido
-    //los datos*/
-    Response response = await get('http://worldtimeapi.org/api/timezone/Europe/Madrid'); //obtenemos el json
+    //Usamos await para que no siga ejecutando el resto de sentencias hasta que no haya obtenido
+    //los datos
+    Response response = await get('http://worldtimeapi.org/api/timezone/$url'); //obtenemos el json
     Map datos = jsonDecode(response.body); //lo decodificamos en un map
 
     //obtener propiedades de datos
@@ -27,9 +35,8 @@ class WorldTime{
     DateTime actual = DateTime.parse(fechaHora);
     actual = actual.add(Duration(hours:int.parse(offset)));
 
-    print(actual);
+    //Establecer la hora actual
+    time  = actual.toString();
 
   }
-
-
 }
