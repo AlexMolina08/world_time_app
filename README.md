@@ -1,4 +1,4 @@
-# worldtimeapp
+# WORLD TIME APP
 
 Simple App that shows the time in different countries 
 <HTML>
